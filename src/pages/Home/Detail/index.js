@@ -2,10 +2,9 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { fetchDetailMovie } from "./duck/action";
 import { useSelector, useDispatch } from "react-redux";
-import Loader from "./../../../_components/loading";
-
+import './style.css'
+import { NavLink } from "react-router-dom";
 export default function DetailMoviePage() {
-  const loading = useSelector((state) => state.detailMovieReducer.loading);
   const data = useSelector((state) => state.detailMovieReducer.data);
   const dispatch = useDispatch();
 
@@ -15,13 +14,31 @@ export default function DetailMoviePage() {
     dispatch(fetchDetailMovie(params.id));
   }, []);
 
-  if (loading) return <Loader />;
+  const handleDetail = () => {
+    return data && <div className="movie_card" id="bright">
+      <div className="info_section">
+        <div className="movie_header">
+          <img className="locandina" src={data.hinhAnh} alt={data.biDanh} />
+          <h1>{data.tenPhim}</h1>
+          <h4>{data.ngayKhoiChieu}</h4>
+        </div>
+        <div className="movie_desc">
+          <p className="text">
+            {data.moTa}
+          </p>
+          <button className="btn btn-success">
+            <NavLink className='textStick' to={`/buystick/${params.id}`} >Mua Vé</NavLink>
+          </button>
+          <iframe className="ifYo" src={data.trailer} allowfullscreen></iframe>
+        </div>
+      </div>
 
+    </div>
+
+  }
   return (
     <div>
-      <h3>{data && data.tenPhim}</h3>
-
-
+      {handleDetail()}
     </div>
   );
 }

@@ -48,7 +48,7 @@ function Carosel() {
     if (data) {
       return data.map((item) => {
         return (<div key={item.maPhim}>
-          <NavLink to={`detail/${item.maPhim}`}>
+          <NavLink to={`/detail/${item.maPhim}`}>
             <img className="img_carousel" src={item.hinhAnh} alt="" />
           </NavLink>
         </div>)
