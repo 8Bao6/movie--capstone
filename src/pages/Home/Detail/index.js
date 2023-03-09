@@ -29,7 +29,7 @@ export default function DetailMoviePage() {
           <button className="btn btn-success">
             <NavLink className='textStick' to={`/buystick/${params.id}`} >Mua Vé</NavLink>
           </button>
-          <iframe className="ifYo" src={data.trailer} allowfullscreen></iframe>
+          <iframe className="ifYo" width={380} height={250} src={data.trailer} allowfullscreen></iframe>
         </div>
       </div>
 

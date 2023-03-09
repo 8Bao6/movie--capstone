@@ -16,7 +16,7 @@ function ListMovie() {
     const [NowShowing, setNowShowing] = useState(true);
     const [ComingSoon, setComingSoon] = useState(false);
     const handleTabClickNowShowing = (e) => {
-        setCurrentTab(e.target.name); 
+        setCurrentTab(e.target.name);
         setNowShowing(true)
         setComingSoon(false);
     }
@@ -31,10 +31,10 @@ function ListMovie() {
             let ListMovieNowShowing = data.filter((movie) => movie.dangChieu === true)
             const ListMovie = [ListMovieNowShowing, ListMovieComingSoon]
             return (
-                ListMovie[currentTab].map((movie) => {      
+                ListMovie[currentTab].map((movie) => {
                     return (
                         <li key={movie.maPhim} className="card_movie col-6 col-lg-3 mb-5">
-                            <NavLink to={`detail/${movie.maPhim}`}>
+                            <NavLink to={`/detail/${movie.maPhim}`}>
                                 <div className="frame_img">
                                     <img className="img_movie" src={movie.hinhAnh} alt={movie.biDanh} />
                                 </div>
@@ -44,32 +44,32 @@ function ListMovie() {
                         </li>
                     )
                 })
-                
+
             )
-}
+        }
     }
 
-return (
-    <section id="menu_Movie">
-        <div className='container-lg'>
-            <div className='tabs'>
-                <button disabled={NowShowing} className={NowShowing ? "title_tad active" : 'title_tad'} name='0' onClick={(handleTabClickNowShowing)}>Phim Đang Chiếu</button>
-                <button disabled={ComingSoon} className={ComingSoon ? "title_tad active" : 'title_tad'} name='1' onClick={(handleTabClickComingSoon)}>Phim Sắp Chiếu</button>
-            </div>
-            <div className="tab-content">
-                <div className='list_movie'>
-                    <div className='main_card_movie'>
-                        <ul className='row'>
-                            {data && HandelListMovie()}
-                        </ul>
+    return (
+        <section id="menu_Movie">
+            <div className='container-lg'>
+                <div className='tabs'>
+                    <button disabled={NowShowing} className={NowShowing ? "title_tad active" : 'title_tad'} name='0' onClick={(handleTabClickNowShowing)}>Phim Đang Chiếu</button>
+                    <button disabled={ComingSoon} className={ComingSoon ? "title_tad active" : 'title_tad'} name='1' onClick={(handleTabClickComingSoon)}>Phim Sắp Chiếu</button>
+                </div>
+                <div className="tab-content">
+                    <div className='list_movie'>
+                        <div className='main_card_movie'>
+                            <ul className='row'>
+                                {data && HandelListMovie()}
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
 
-    </section>
-);
+        </section>
+    );
 }
 
 export default ListMovie
